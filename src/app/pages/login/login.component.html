@@ -8,12 +8,12 @@
       <div class="formContainer">
         <h2 class="subtitle">Login</h2>
         <form [formGroup]="form" class="loginForm">
-          <mat-form-field>
-            <mat-label>Id ou matrícula</mat-label>
+          <mat-form-field class="input">
+            <mat-label class="label">Id ou matrícula</mat-label>
             <input matInput formControlName="user" required>
           </mat-form-field>
-          <mat-form-field>
-            <mat-label>Senha</mat-label>
+          <mat-form-field class="input">
+            <mat-label class="label">Senha</mat-label>
             <input matInput formControlName="password" required>
           </mat-form-field>
         </form>

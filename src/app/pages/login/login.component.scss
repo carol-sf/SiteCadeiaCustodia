@@ -1,8 +1,8 @@
 @import '../../../styles.scss';
 
 .backgroundImage {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-image: url('../../../assets/police-car.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,23 +14,86 @@
   background-color: #171A4A;
   opacity: 0.8;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .mainContent {
-  width: 50%;
+  width: 60%;
   height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
 .titleContainer {
+  width: 50%;
   border-right: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  font-weight: normal !important;
+}
+
+.image {
+  width: 100px;
+}
+
+.title {
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.formContainer {
+  width: 50%;
+  padding: 40px;
+}
+
+.subtitle {
+  font-weight: normal;
+  font-size: 24px;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
+}
+
+.input {
+  opacity: 0.5;
+}
+
+// .mdc-text-field--filled
+
+.label {
+  color: black;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: white;
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
