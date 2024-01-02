@@ -7,15 +7,21 @@
       </div>
       <div class="formContainer">
         <h2 class="subtitle">Login</h2>
-        <form class="loginForm">
-          <input type="text" class="field">
-          <input type="text" class="field">
+        <form [formGroup]="form" class="loginForm">
+          <mat-form-field>
+            <mat-label>Id ou matrícula</mat-label>
+            <input matInput formControlName="user" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" required>
+          </mat-form-field>
         </form>
         <div class="actionsContainer">
           <a routerLink="" class="link">Esqueceu a senha?</a>
-          <button class="button">
-            Entrar >
-            <!-- <mat-icon>navigate_next</mat-icon> -->
+          <button mat-button class="button">
+            Entrar
+            <mat-icon>navigate_next</mat-icon>
           </button>
         </div>
       </div>
