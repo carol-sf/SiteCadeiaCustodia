@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import db from '../config/firebase';
+import db from '../../config/firebase';
 import { and, collection, doc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
-import { User } from '../interfaces/user';
+import { User } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +60,7 @@ export class UserService {
 
       const result = await getDocs(q)
 
-      if(result.empty) throw new Error("Nenhum usuario encontrado")
+      if(result.empty) return "Nenhum usuario encontrado"
 
       return 'sucesso'
     }
