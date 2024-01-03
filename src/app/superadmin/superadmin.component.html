@@ -1,2 +1,13 @@
-<p>superadmin works!</p>
-<router-outlet></router-outlet>
+<mat-sidenav-container [style.height]="'100vh'">
+  <mat-sidenav opened mode="side" [style.width]="getMenuWidth()">
+    <p>Teste</p>
+
+    <button mat-icon-button (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="getMenuWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
