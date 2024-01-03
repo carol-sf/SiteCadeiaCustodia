@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { SuperadminModule } from './superadmin/superadmin.module';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SuperadminModule } from './superadmin/superadmin.module';
     MatInputModule,
     ReactiveFormsModule,
     SuperadminModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
