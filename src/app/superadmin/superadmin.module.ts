@@ -5,6 +5,7 @@ import { SuperadminRoutes } from './superadmin.routing';
 import { SuperadminComponent } from './superadmin.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     SuperadminRoutes,
     MatSidenavModule,
     MatIconModule,
+    MatListModule,
   ]
 })
 export class SuperadminModule { }

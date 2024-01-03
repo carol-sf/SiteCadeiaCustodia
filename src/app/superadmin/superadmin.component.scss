@@ -1,0 +1,89 @@
+@import '../../styles.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+.menu {
+  background-color: #171D34;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.headerMenu {
+  text-align: center;
+  padding: 20px 30px;
+  height: 30%;
+}
+
+.mainImageMenu {
+  width: 60%;
+}
+
+.titleMenu {
+  font-size: 16px;
+  color: white;
+}
+
+.menuOptionsContainer {
+  padding: 20px;
+  background-color: #1E2A4C;
+  border-top-right-radius: 50px;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menuOptionsContainer a {
+  text-align: start;
+  font-size: 14px;
+}
+
+.menuOptionsContainer span, .menuOptionsContainer mat-icon {
+  color: white;
+}
+
+.menuOptionsContainer a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profileButton {
+  background-color: #171D34;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.profileIcon {
+  width: 32px;
+}
+
+.userName {
+  text-align: start;
+  color: white;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.toggleMenuButton {
+  border-radius: 50%;
+  margin-top: 10px;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggleMenuButton:hover {
+  background-color: rgb(255, 255, 255, 0.1);
+}
+
+
+.toggleMenuContainer {
+  display: flex;
+  justify-content: flex-end;
+}
