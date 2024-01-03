@@ -8,6 +8,11 @@
   background-color: #171D34;
   margin: 10px;
   border-radius: 15px;
+  width: 250px;
+}
+
+.menu.collapsed {
+  width: 65px;
 }
 
 .headerMenu {
@@ -16,13 +21,27 @@
   height: 30%;
 }
 
+.headerMenu.collapsed {
+  padding: 20px 2px;
+  height: 15%;
+}
+
 .mainImageMenu {
   width: 60%;
+}
+
+.mainImageMenu.collapsed {
+  width: 90%;
 }
 
 .titleMenu {
   font-size: 16px;
   color: white;
+}
+
+.titleMenu.collapsed {
+  opacity: 0;
+  font-size: 5px;
 }
 
 .menuOptionsContainer {
@@ -35,6 +54,11 @@
   justify-content: space-between;
 }
 
+.menuOptionsContainer.collapsed  {
+  padding: 20px 2px;
+  height: 85%;
+}
+
 .menuOptionsContainer a {
   text-align: start;
   font-size: 14px;
@@ -42,6 +66,7 @@
 
 .menuOptionsContainer span, .menuOptionsContainer mat-icon {
   color: white;
+  height: 3rem;
 }
 
 .menuOptionsContainer a:hover {
@@ -57,6 +82,12 @@
   border-radius: 15px;
 }
 
+.profileButton.collapsed {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
 .profileIcon {
   width: 32px;
 }
@@ -66,6 +97,15 @@
   color: white;
   margin-left: 10px;
   font-size: 14px;
+}
+
+.toggleMenuContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggleMenuContainer.collapsed {
+  justify-content: center;
 }
 
 .toggleMenuButton {
@@ -82,8 +122,6 @@
   background-color: rgb(255, 255, 255, 0.1);
 }
 
-
-.toggleMenuContainer {
-  display: flex;
-  justify-content: flex-end;
+:host * {
+  transition: all 500ms ease-in-out;
 }
