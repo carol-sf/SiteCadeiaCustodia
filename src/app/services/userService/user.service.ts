@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import db from '../../config/firebase';
-import { and, collection, doc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { and, collection, doc, getDoc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { User } from '../../interfaces/user';
 
 @Injectable({
@@ -55,14 +55,22 @@ export class UserService {
 
   async Login(posto: string, id : string, senha: string) {
     try {
-      const q = query(collection(db, `Postos/${posto}/Usuarios`), and(or(where('id', '==', id), where('matricula', '==', id)), 
-        where('senha', '==', senha)))
+      const user = await getDocs(query(collection(db, `Postos/${posto}/Usuarios`), 
+        or(where('id', '==', id), where('matricula', '==', id))))
 
-      const result = await getDocs(q)
+      if(user.empty) return 'Nenhum usuario encontrado'
 
-      if(result.empty) return "Nenhum usuario encontrado"
+      var passwordCheck = false
 
-      return 'sucesso'
+      user.forEach(doc => {
+        if(doc.data()['senha'] == senha) {
+          passwordCheck = true
+        }
+      })
+
+      if(passwordCheck) return 'sucesso'
+
+      return 'senha incorreta'
     }
     catch(ex) {
       return ex

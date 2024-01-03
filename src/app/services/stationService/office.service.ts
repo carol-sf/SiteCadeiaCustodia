@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import db from 'src/app/config/firebase';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StationService {
+export class OfficeService {
 
   constructor() { }
 
-  async FindStationList(nome: string) {
+  async FindOfficeList(nome: string) {
     try {
       const result = await getDocs(collection(db, `Postos`))
 
@@ -24,7 +24,8 @@ export class StationService {
       return ret
     }
     catch(ex) {
-      return ex
+      console.log(ex)
+      return []
     }
   }
 }

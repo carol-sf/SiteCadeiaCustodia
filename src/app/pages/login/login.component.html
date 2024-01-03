@@ -11,7 +11,7 @@
 
           <mat-form-field class="input">
             <mat-label class="label">Id ou matrícula</mat-label>
-            <input matInput formControlName="user" type="number" required>
+            <input matInput formControlName="user" type="text" required>
             <mat-error *ngIf="form.controls['user'].hasError('required')">
               campo obrigatório
             </mat-error>
@@ -27,7 +27,7 @@
 
           <mat-form-field class="input">
             <mat-label class="label">Posto</mat-label>
-            <input matInput formControlName="office" [matAutocomplete]="auto" [formControl]="officeControl" required>
+            <input matInput formControlName="office" [matAutocomplete]="auto" [formControl]="officeControl" required (ngModelChange)="changeOffice()">
             <mat-error *ngIf="officeControl.hasError('required')">
               campo obrigatório
             </mat-error>
