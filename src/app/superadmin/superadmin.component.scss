@@ -8,6 +8,11 @@
   background-color: #171D34;
   margin: 10px;
   border-radius: 15px;
+  width: 250px;
+}
+
+.menu.collapsed {
+  width: 65px;
 }
 
 .headerMenu {
@@ -16,8 +21,17 @@
   height: 30%;
 }
 
+.headerMenu.collapsed {
+  padding: 20px 2px;
+  height: 15%;
+}
+
 .mainImageMenu {
   width: 60%;
+}
+
+.mainImageMenu.collapsed {
+  width: 90%;
 }
 
 .titleMenu {
@@ -33,6 +47,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.menuOptionsContainer.collapsed  {
+  padding: 20px 2px;
+  height: 85%;
 }
 
 .menuOptionsContainer a {
@@ -57,6 +76,12 @@
   border-radius: 15px;
 }
 
+.profileButton.collapsed {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
 .profileIcon {
   width: 32px;
 }
@@ -66,6 +91,15 @@
   color: white;
   margin-left: 10px;
   font-size: 14px;
+}
+
+.toggleMenuContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggleMenuContainer.collapsed {
+  justify-content: center;
 }
 
 .toggleMenuButton {
@@ -83,7 +117,3 @@
 }
 
 
-.toggleMenuContainer {
-  display: flex;
-  justify-content: flex-end;
-}

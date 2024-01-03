@@ -1,10 +1,10 @@
 <mat-sidenav-container [style.height]="'100vh'">
-  <mat-sidenav opened mode="side" [style.width]="getMenuWidth()" class="menu">
-    <div class="headerMenu">
-      <img src="../../assets/police-logo.png" alt="Logo da polícia" class="mainImageMenu">
-      <p class="titleMenu">Delegacia de Homicídios da Capital</p>
+  <mat-sidenav opened mode="side" class="menu" [class.collapsed]="!expanded">
+    <div class="headerMenu" [class.collapsed]="!expanded">
+      <img src="../../assets/police-logo.png" alt="Logo da polícia" class="mainImageMenu" [class.collapsed]="!expanded">
+      <p class="titleMenu" *ngIf="expanded">Delegacia de Homicídios da Capital</p>
     </div>
-    <div class="menuOptionsContainer">
+    <div class="menuOptionsContainer" [class.collapsed]="!expanded">
       <mat-nav-list>
         <a mat-list-item routerLink="procedimentos">
           <mat-icon matListItemIcon>description</mat-icon>
@@ -21,11 +21,11 @@
       </mat-nav-list>
 
       <div>
-        <div routerLink="perfil" class="profileButton">
+        <div routerLink="perfil" class="profileButton" [class.collapsed]="!expanded">
           <img src="../../assets/icon-profile.png" alt="Icone de perfil" class="profileIcon">
-          <p class="userName">Denilson Soares de Siqueira</p>
+          <p class="userName" *ngIf="expanded">Denilson Soares de Siqueira</p>
         </div>
-        <div class="toggleMenuContainer">
+        <div class="toggleMenuContainer" [class.collapsed]="!expanded" >
           <mat-icon (click)="toggleMenu()" class="toggleMenuButton">navigate_before</mat-icon>
         </div>
       </div>

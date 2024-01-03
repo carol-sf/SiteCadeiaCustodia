@@ -13,6 +13,10 @@ export class SuperadminComponent {
     private router: Router,
   ) {}
 
+  goToProfilePage() {
+    this.router.navigate(['superadmin/perfil']);
+  }
+
   toggleMenu() {
     this.expanded = !this.expanded;
   }
@@ -25,7 +29,17 @@ export class SuperadminComponent {
     return this.expanded ? '270px' : '85px';
   }
 
-  goToProfilePage() {
-    this.router.navigate(['superadmin/perfil']);
+  // Para a versão retrátil do menu
+
+  getMenuPadding(): string {
+    return this.expanded ? '20px' : '20px 2px';
+  }
+
+  getLogoWidth(): string {
+    return this.expanded ? '60%' : '90%';
+  }
+
+  getHeaderMenuHeight(): string {
+    return this.expanded ? '30%' : '20%';
   }
 }
