@@ -8,18 +8,37 @@
       <div class="formContainer">
         <h2 class="subtitle">Login</h2>
         <form [formGroup]="form" class="loginForm">
+
           <mat-form-field class="input">
             <mat-label class="label">Id ou matrícula</mat-label>
-            <input matInput formControlName="user" required>
+            <input matInput formControlName="user" type="number" required>
+            <mat-error *ngIf="form.controls['user'].hasError('required')">
+              campo obrigatório
+            </mat-error>
           </mat-form-field>
+
           <mat-form-field class="input">
             <mat-label class="label">Senha</mat-label>
-            <input matInput formControlName="password" required>
+            <input matInput type="password" formControlName="password" required>
+            <mat-error *ngIf="form.controls['password'].hasError('required')">
+              campo obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input">
+            <mat-label class="label">Posto</mat-label>
+            <input matInput formControlName="office" [matAutocomplete]="auto" [formControl]="officeControl" required>
+            <mat-error *ngIf="officeControl.hasError('required')">
+              campo obrigatório
+            </mat-error>
+            <mat-autocomplete #auto>
+              <mat-option *ngFor="let office of filterOptions | async" [value]="office">{{office}}</mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </form>
         <div class="actionsContainer">
           <a routerLink="" class="link">Esqueceu a senha?</a>
-          <button mat-button class="button">
+          <button mat-button class="button" (click)="login()">
             Entrar
             <mat-icon>navigate_next</mat-icon>
           </button>
