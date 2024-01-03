@@ -2,7 +2,7 @@
   <mat-sidenav opened mode="side" class="menu" [class.collapsed]="!expanded">
     <div class="headerMenu" [class.collapsed]="!expanded">
       <img src="../../assets/police-logo.png" alt="Logo da polícia" class="mainImageMenu" [class.collapsed]="!expanded">
-      <p class="titleMenu" *ngIf="expanded">Delegacia de Homicídios da Capital</p>
+      <p class="titleMenu" [class.collapsed]="!expanded">Delegacia de Homicídios da Capital</p>
     </div>
     <div class="menuOptionsContainer" [class.collapsed]="!expanded">
       <mat-nav-list>
@@ -26,7 +26,8 @@
           <p class="userName" *ngIf="expanded">Denilson Soares de Siqueira</p>
         </div>
         <div class="toggleMenuContainer" [class.collapsed]="!expanded" >
-          <mat-icon (click)="toggleMenu()" class="toggleMenuButton">navigate_before</mat-icon>
+          <mat-icon (click)="toggleMenu()" class="toggleMenuButton" *ngIf="expanded">navigate_before</mat-icon>
+          <mat-icon (click)="toggleMenu()" class="toggleMenuButton" *ngIf="!expanded">navigate_next</mat-icon>
         </div>
       </div>
 

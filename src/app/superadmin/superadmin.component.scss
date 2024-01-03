@@ -39,6 +39,11 @@
   color: white;
 }
 
+.titleMenu.collapsed {
+  opacity: 0;
+  font-size: 5px;
+}
+
 .menuOptionsContainer {
   padding: 20px;
   background-color: #1E2A4C;
@@ -61,6 +66,7 @@
 
 .menuOptionsContainer span, .menuOptionsContainer mat-icon {
   color: white;
+  height: 3rem;
 }
 
 .menuOptionsContainer a:hover {
@@ -116,4 +122,6 @@
   background-color: rgb(255, 255, 255, 0.1);
 }
 
-
+:host * {
+  transition: all 500ms ease-in-out;
+}
