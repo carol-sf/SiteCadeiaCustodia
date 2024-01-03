@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../userService/user.service';
-import { StationService } from '../stationService/station.service';
+import { OfficeService } from '../stationService/office.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { StationService } from '../stationService/station.service';
 export class UnitOfService {
 
   constructor(
-    public userService: UserService = new UserService(),
-    public stationService: StationService = new StationService()
+    public userService: UserService,
+    public officeService: OfficeService
   ) { }
 }
