@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { SuperadminComponent } from './superadmin.component';
-import { HomeComponent } from './pages/home/home.component';
+import { ProceduresComponent } from './pages/procedures/procedures.component';
 
 const routes: Routes = [
   {
@@ -9,12 +9,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'procedimentos',
         pathMatch: 'full'
       },
       {
-        path: 'home',
-        component: HomeComponent
+        path: 'procedimentos',
+        component: ProceduresComponent
       },
     ]
   },
