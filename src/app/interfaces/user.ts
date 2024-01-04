@@ -19,3 +19,12 @@ export enum UserType {
     SuperAdmin = 2,
     Operador = 3
 }
+
+export function getUserTypeName(userType: UserType): string {
+  switch(userType) {
+    case UserType.Perito: return "Perito";
+    case UserType.Admin: return "Admin";
+    case UserType.SuperAdmin: return "Super Admin";
+    case UserType.Operador: return "Operador";
+  }
+}

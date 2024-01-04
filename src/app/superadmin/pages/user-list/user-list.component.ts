@@ -1,4 +1,4 @@
-import { User, UserType } from 'src/app/interfaces/user';
+import { User, UserType, getUserTypeName } from 'src/app/interfaces/user';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -19,6 +19,7 @@ export class UserListComponent {
     'edit',
     'archive'
   ];
+  getUserTypeName = getUserTypeName;
 
   usersTest: User[] = [
     {
