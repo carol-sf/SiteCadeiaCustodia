@@ -15,6 +15,8 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import { ModalArquiveConfirmationComponent } from './components/modal-arquive-confirmation/modal-arquive-confirmation.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import {MatTableModule} from '@angular/material/table';
     ProceduresComponent,
     UserRegisterComponent,
     UserListComponent,
+    ModalArquiveConfirmationComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,7 @@ import {MatTableModule} from '@angular/material/table';
     MatSlideToggleModule,
     MatSelectModule,
     MatTableModule,
+    MatDialogModule,
   ]
 })
 export class SuperadminModule { }

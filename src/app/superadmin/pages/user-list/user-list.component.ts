@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, filter, map, startWith } from 'rxjs';
 import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalArquiveConfirmationComponent } from '../../components/modal-arquive-confirmation/modal-arquive-confirmation.component';
 
 @Component({
   selector: 'app-user-list',
@@ -162,6 +164,7 @@ export class UserListComponent {
   constructor(
     private formBuilder: FormBuilder,
     private service: UnitOfService,
+    private dialog: MatDialog,
   ) {
     this.filterForm = this.formBuilder.group({
       search: [''],
@@ -186,4 +189,21 @@ export class UserListComponent {
     const searchValue = value.toLowerCase();
     return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
+
+  archiveUser(user: User) {
+    this.dialog
+      .open(ModalArquiveConfirmationComponent, {
+        width: '450px',
+        height: '200px',
+      })
+      .afterClosed()
+      .subscribe({
+        next: (result: boolean) => {
+          if (result) {
+            // arquivar usuário
+          }
+        },
+      });
+  }
+
 }
