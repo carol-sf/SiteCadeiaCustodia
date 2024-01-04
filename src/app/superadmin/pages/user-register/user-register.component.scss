@@ -1,0 +1,54 @@
+@import '../../../../styles.scss';
+
+.mainContainer {
+  margin: 0 10% 0 10%;
+}
+
+.userTypeContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userTypeItem {
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid #5659EC;
+  border-radius: 15px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #5659EC;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.userTypeItem.selected {
+  background-color: #5659EC;
+  color: white;
+}
+
+.userTypeItem img {
+  width: 50px;
+}
+
+.userTypeItem p {
+  margin: 0;
+  margin-top: 5px;
+}
+
+.sentButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sendButon {
+  background-color: #1E2A4C;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-top: 40px;
+}

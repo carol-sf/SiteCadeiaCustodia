@@ -1,0 +1,89 @@
+<section class="mainContainer">
+  <h1>Cadastrar Usuário</h1>
+  <form [formGroup]="form">
+    <div class="formGroup">
+      <mat-form-field class="input">
+        <mat-label class="label">Id</mat-label>
+        <input matInput formControlName="id" type="text" required>
+        <mat-error *ngIf="form.controls['id'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label class="label">Matrícula</mat-label>
+        <input matInput formControlName="matriculation" type="text" required>
+        <mat-error *ngIf="form.controls['matriculation'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="input">
+      <mat-label class="label">Nome completo</mat-label>
+      <input matInput formControlName="name" type="text" required>
+      <mat-error *ngIf="form.controls['name'].hasError('required')">
+        campo obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <div class="formGroup">
+      <mat-form-field class="input">
+        <mat-label class="label">Posto</mat-label>
+        <input matInput formControlName="office" type="text" required>
+        <mat-error *ngIf="form.controls['office'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label class="label">Departamento</mat-label>
+        <input matInput formControlName="departament" type="text" required>
+        <mat-error *ngIf="form.controls['departament'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="input">
+      <mat-label class="label">Serviço</mat-label>
+      <input matInput formControlName="service" type="text" required>
+      <mat-error *ngIf="form.controls['service'].hasError('required')">
+        campo obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <div class="userTypeContainer">
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Admin"
+        (click)="selectUserType(UserType.Admin)">
+        <img src="../../../../assets/user-manager-blue.png" alt="Icone de gerente"
+          *ngIf="selectedUserType != UserType.Admin">
+        <img src="../../../../assets/user-manager-white.png" alt="Icone de gerente"
+          *ngIf="selectedUserType == UserType.Admin">
+        <p>Gerente</p>
+      </div>
+
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Perito"
+        (click)="selectUserType(UserType.Perito)">
+        <img src="../../../../assets/user-investigator-blue.png" alt="Icone de perito"
+          *ngIf="selectedUserType != UserType.Perito">
+        <img src="../../../../assets/user-investigator-white.png" alt="Icone de perito"
+          *ngIf="selectedUserType == UserType.Perito">
+        <p>Perito</p>
+      </div>
+
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Operador"
+        (click)="selectUserType(UserType.Operador)">
+        <img src="../../../../assets/user-operator-blue.png" alt="Icone de operador"
+          *ngIf="selectedUserType != UserType.Operador">
+        <img src="../../../../assets/user-operator-white.png" alt="Icone de operador"
+          *ngIf="selectedUserType == UserType.Operador">
+        <p>Operador</p>
+      </div>
+    </div>
+
+    <div class="sentButtonContainer">
+      <div class="sendButon">
+        <mat-icon color="#fff">add</mat-icon>
+      </div>
+    </div>
+  </form>
+</section>
