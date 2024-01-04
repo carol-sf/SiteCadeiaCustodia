@@ -28,6 +28,8 @@ export class UserRegisterComponent {
       id: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
       matriculation: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       office: ['', Validators.required],
       departament: ['', Validators.required],
       service: ['', Validators.required],
