@@ -59,7 +59,7 @@
     </div>
 
     <div class="inputGroup">
-      <mat-form-field class="input">
+      <mat-form-field class="input"  [class.expandedInput]="selectedUserType == UserType.Operador">
         <mat-label class="label">Posto</mat-label>
         <input matInput formControlName="office" [matAutocomplete]="officeAuto" required>
         <mat-error *ngIf="form.controls['office'].hasError('required')">
