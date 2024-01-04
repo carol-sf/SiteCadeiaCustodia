@@ -15,7 +15,8 @@ export class UserService {
       const docRef = collection(db, `Postos/${user.posto}`, "Usuarios")
 
       await setDoc(doc(docRef, user.id), user)
-      return "sucesso"
+
+      return "Sucesso"
     }
     catch(ex) {
       return ex
@@ -27,7 +28,7 @@ export class UserService {
       const docRef = doc(db, `Postos/${user.posto}/Usuarios`, user.id)
 
       await updateDoc(docRef, user)
-      return "sucesso"
+      return "Sucesso"
     }
     catch(ex) {
       return ex
@@ -60,17 +61,17 @@ export class UserService {
 
       if(user.empty) return 'Nenhum usuario encontrado'
 
-      var passwordCheck = false
+      var type
 
       user.forEach(doc => {
         if(doc.data()['senha'] == senha) {
-          passwordCheck = true
+          type = doc.data()['tipo']
         }
       })
 
-      if(passwordCheck) return 'sucesso'
+      if(type) return type
 
-      return 'senha incorreta'
+      return 'Senha incorreta'
     }
     catch(ex) {
       return ex
