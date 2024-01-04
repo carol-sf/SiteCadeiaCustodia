@@ -32,7 +32,7 @@ export class UserRegisterComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       office: ['', Validators.required],
       departament: ['', Validators.required],
-      service: ['', Validators.required],
+      services: ['', Validators.required],
     });
   }
 
@@ -60,11 +60,6 @@ export class UserRegisterComponent {
       }),
     );
 
-    this.serviceFilterOptions = this.form.get('service')!.valueChanges.pipe(
-      startWith(''), map(value => {
-        return this.serviceFilter(value || '')
-      }),
-    );
   }
 
   selectUserType(userType: UserType) {

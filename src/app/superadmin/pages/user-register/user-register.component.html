@@ -79,15 +79,19 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field class="input">
-      <mat-label class="label">Serviço</mat-label>
-      <input matInput formControlName="service" [matAutocomplete]="serviceAuto" required>
-      <mat-error *ngIf="form.controls['service'].hasError('required')">
-        campo obrigatório
-      </mat-error>
-      <mat-autocomplete #serviceAuto>
-        <mat-option *ngFor="let option of serviceFilterOptions | async" [value]="option">{{option}}</mat-option>
-      </mat-autocomplete>
+    <mat-form-field class="input" *ngIf="form.get('departament')?.value">
+      <mat-label>Serviços</mat-label>
+      <mat-select formControlName="services" multiple>
+        <mat-select-trigger>
+          {{form.get('services')?.value?.[0] || ''}}
+          <span class="labelOthers" *ngIf="(form.get('services')?.value?.length || 0) > 1">
+            (+{{(form.get('services')?.value?.length || 0) - 1}} {{form.get('services')?.value?.length === 2 ? 'outro' : 'outros'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let service of serviceOptions" [value]="service">
+          {{ service }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <div class="userTypeContainer">
