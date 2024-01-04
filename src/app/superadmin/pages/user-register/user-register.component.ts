@@ -39,14 +39,6 @@ export class UserRegisterComponent {
   async ngOnInit() {
     this.officeOptions = await this.service.officeService.FindOfficeList('');
     this.departamentOptions= ['Criminal', 'Médico Legal', 'IIFP'];
-    this.serviceOptions = [
-      'Serviço de perícia de arma de fogo',
-      'Laboratório de entorpecentes',
-      'Laboratório de hematologia',
-      'Laboratório de toxicologia',
-      'Laboratório de anatomo-patologia',
-      'Movimentação de material',
-    ];
 
     this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
       startWith(''), map(value => {
@@ -54,11 +46,21 @@ export class UserRegisterComponent {
       }),
     );
 
-    this.departamentFilterOptions = this.form.get('departament')!.valueChanges.pipe(
-      startWith(''), map(value => {
-        return this.departamentFilter(value || '')
-      }),
-    );
+    this.form.get('departament')!.valueChanges.subscribe(value => {
+      switch(value) {
+        case 'Criminal':
+          this.serviceOptions = ['Serviço de perícia de arma de fogo', 'Laboratório de entorpecentes'];
+          break;
+        case 'Médico Legal':
+          this.serviceOptions = ['Laboratório de hematologia', 'Laboratório de toxicologia', 'Laboratório de anatomo-patologia'];
+          break;
+        case 'IIFP':
+          this.serviceOptions = ['Movimentação de material'];
+          break;
+        default:
+          this.serviceOptions = [''];
+      }
+    });
 
   }
 
