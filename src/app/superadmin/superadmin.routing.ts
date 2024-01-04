@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SuperadminComponent } from './superadmin.component';
 import { ProceduresComponent } from './pages/procedures/procedures.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'procedimentos',
         component: ProceduresComponent
+      },
+      {
+        path: 'usuarios',
+        component: UserListComponent
       },
       {
         path: 'usuarios/cadastrar',
