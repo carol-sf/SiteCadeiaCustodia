@@ -19,6 +19,7 @@ export class UserRegisterComponent {
   departamentFilterOptions!: Observable<string[]>;
   serviceFilterOptions!: Observable<string[]>;
   officeFilterOptions!: Observable<string[]>;
+  hidePassword: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
