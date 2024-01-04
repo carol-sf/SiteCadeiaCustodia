@@ -14,6 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatTableModule,
   ]
 })
 export class SuperadminModule { }
