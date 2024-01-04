@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalArquiveConfirmationComponent } from './modal-arquive-confirmation.component';
+import { ModalArquiveConfirmationComponent } from './modal-archive-confirmation.component';
 
 describe('ModalArquiveConfirmationComponent', () => {
   let component: ModalArquiveConfirmationComponent;

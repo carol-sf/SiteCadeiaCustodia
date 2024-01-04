@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-arquive-confirmation',
-  templateUrl: './modal-arquive-confirmation.component.html',
-  styleUrls: ['./modal-arquive-confirmation.component.scss']
+  templateUrl: './modal-archive-confirmation.component.html',
+  styleUrls: ['./modal-archive-confirmation.component.scss']
 })
 export class ModalArquiveConfirmationComponent {
 

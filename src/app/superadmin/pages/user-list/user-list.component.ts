@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, filter, map, startWith } from 'rxjs';
 import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalArquiveConfirmationComponent } from '../../components/modal-arquive-confirmation/modal-arquive-confirmation.component';
+import { ModalArquiveConfirmationComponent } from '../../components/modal-archive-confirmation/modal-archive-confirmation.component';
 
 @Component({
   selector: 'app-user-list',
