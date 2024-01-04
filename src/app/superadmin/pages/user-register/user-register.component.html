@@ -1,5 +1,5 @@
 <section class="mainContainer">
-  <h1>Cadastrar Usuário</h1>
+  <h1 class="title">Cadastrar Usuário</h1>
   <form [formGroup]="form">
     <div class="inputGroup">
       <mat-form-field class="input">
@@ -96,7 +96,7 @@
     </div>
 
     <div class="sentButtonContainer">
-      <div class="sendButon">
+      <div class="sendButon" (click)="registerUser()">
         <mat-icon color="#fff">add</mat-icon>
       </div>
     </div>

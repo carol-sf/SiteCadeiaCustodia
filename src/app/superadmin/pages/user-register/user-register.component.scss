@@ -4,9 +4,16 @@
   margin: 0 10% 0 10%;
 }
 
+.title {
+  color: #1E2A4C;
+  font-size: 28px;
+  font-weight: 500;
+}
+
 .userTypeContainer {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .userTypeItem {

@@ -14,17 +14,10 @@ export class UserRegisterComponent {
   UserType = UserType;
   selectedUserType: UserType = UserType.Admin;
   officeOptions!: string[];
-  departamentOptions: string[] = ['Criminal', 'Médico Legal', 'IIFP'];
-  serviceOptions: string[] = [
-    'Serviço de perícia de arma de fogo',
-    'Laboratório de entorpecentes',
-    'Laboratório de hematologia',
-    'Laboratório de toxicologia',
-    'Laboratório de anatomo-patologia',
-    'Movimentação de material',
-  ];
-  departamentFilterOptions: Observable<string[]>;
-  serviceFilterOptions: Observable<string[]>;
+  departamentOptions!: string[];
+  serviceOptions!: string[];
+  departamentFilterOptions!: Observable<string[]>;
+  serviceFilterOptions!: Observable<string[]>;
   officeFilterOptions!: Observable<string[]>;
 
   constructor(
@@ -39,6 +32,25 @@ export class UserRegisterComponent {
       departament: ['', Validators.required],
       service: ['', Validators.required],
     });
+  }
+
+  async ngOnInit() {
+    this.officeOptions = await this.service.officeService.FindOfficeList('');
+    this.departamentOptions= ['Criminal', 'Médico Legal', 'IIFP'];
+    this.serviceOptions = [
+      'Serviço de perícia de arma de fogo',
+      'Laboratório de entorpecentes',
+      'Laboratório de hematologia',
+      'Laboratório de toxicologia',
+      'Laboratório de anatomo-patologia',
+      'Movimentação de material',
+    ];
+
+    this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
+      startWith(''), map(value => {
+        return this.officeFilter(value || '')
+      }),
+    );
 
     this.departamentFilterOptions = this.form.get('departament')!.valueChanges.pipe(
       startWith(''), map(value => {
@@ -53,19 +65,13 @@ export class UserRegisterComponent {
     );
   }
 
-  async ngOnInit() {
-    this.officeOptions = await this.service.officeService.FindOfficeList('');
-
-    this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
-      startWith(''), map(value => {
-        return this.officeFilter(value || '')
-      }),
-    );
-
-  }
-
   selectUserType(userType: UserType) {
     this.selectedUserType = userType;
+  }
+
+  private officeFilter(value: string): string[] {
+    const searchValue = value.toLowerCase();
+    return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
 
   private departamentFilter(value: string): string[] {
@@ -78,8 +84,7 @@ export class UserRegisterComponent {
     return this.serviceOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
 
-  private officeFilter(value: string): string[] {
-    const searchValue = value.toLowerCase();
-    return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
+  registerUser() {
+
   }
 }
