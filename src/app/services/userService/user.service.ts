@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import db from '../../config/firebase';
-import { and, collection, doc, getDoc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { collection, doc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { User } from '../../interfaces/user';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class UserService {
 
       await setDoc(doc(docRef, user.id), user)
 
-      return "Sucesso"
+      return "Sucesso ao registrar usuario"
     }
     catch(ex) {
       return ex

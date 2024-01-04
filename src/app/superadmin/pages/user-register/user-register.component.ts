@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, map, startWith } from 'rxjs';
-import { UserType } from 'src/app/interfaces/user';
+import { User, UserType } from 'src/app/interfaces/user';
 import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
 
 @Component({
@@ -24,6 +26,8 @@ export class UserRegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private service: UnitOfService,
+    private toast: ToastrService,
+    private router: Router
   ) {
     this.form = this.formBuilder.group({
       id: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
@@ -84,7 +88,26 @@ export class UserRegisterComponent {
     return this.serviceOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
 
-  registerUser() {
+  async registerUser() {
+    this.form.markAsTouched()
+    if(this.form.valid) {
+      var user : User = {
+        id: this.form.get('id')?.value,
+        matricula: this.form.get('matriculation')?.value,
+        nome: this.form.get('name')?.value,
+        email: this.form.get('email')?.value,
+        senha: this.form.get('password')?.value,
+        posto: this.form.get('office')?.value,
+        ativo: true,
+        tipo: this.selectedUserType,
+        departamento: this.form.get('departament')?.value,
+        servicos: this.form.get('services')?.value
+      }
 
+      var result: any = await this.service.userService.CreateUser(user)
+
+      this.toast.success(result)
+      this.router.navigate(['./superadmin/usuarios'])
+    }
   }
 }

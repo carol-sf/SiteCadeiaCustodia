@@ -8,7 +8,9 @@ export interface User extends AddPrefixToKeys<string, any> {
     senha: string,
     posto: string,
     ativo: boolean,
-    tipo: UserType
+    tipo: UserType,
+    departamento: string,
+    servicos: string[]
 }
 
 export enum UserType {
