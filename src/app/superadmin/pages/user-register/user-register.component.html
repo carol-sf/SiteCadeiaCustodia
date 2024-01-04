@@ -70,7 +70,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="input">
+      <mat-form-field class="input" *ngIf="selectedUserType != UserType.Operador">
         <mat-label>Departamento</mat-label>
         <mat-select formControlName="departament">
           <mat-option *ngFor="let option of departamentOptions" [value]="option">
@@ -80,7 +80,7 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field class="input" *ngIf="form.get('departament')?.value">
+    <mat-form-field class="input" *ngIf="form.get('departament')?.value && selectedUserType != UserType.Operador">
       <mat-label>Serviços</mat-label>
       <mat-select formControlName="services" multiple>
         <mat-select-trigger>

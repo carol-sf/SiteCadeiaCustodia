@@ -100,8 +100,8 @@ export class UserRegisterComponent {
         posto: this.form.get('office')?.value,
         ativo: true,
         tipo: this.selectedUserType,
-        departamento: this.form.get('departament')?.value,
-        servicos: this.form.get('services')?.value
+        departamento: this.selectedUserType != UserType.Operador ? this.form.get('departament')?.value : '',
+        servicos: this.selectedUserType != UserType.Operador ? this.form.get('services')?.value : []
       }
 
       var result: any = await this.service.userService.CreateUser(user)
