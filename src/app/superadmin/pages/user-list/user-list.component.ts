@@ -1,6 +1,9 @@
 import { User, UserType, getUserTypeName } from 'src/app/interfaces/user';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, filter, map, startWith } from 'rxjs';
+import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
 
 @Component({
   selector: 'app-user-list',
@@ -8,6 +11,18 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
+  filterForm: FormGroup;
+  labOptions: string[] = [
+    'Perícia de arma de fogo',
+    'Entorpecentes',
+    'Hematologia',
+    'Toxicologia',
+    'Anatomo-patologia',
+    'Movimentação de material'
+  ]
+  userTypeOptions: string[] = ['Super Admin', 'Admin', 'Perito', 'Operador'];
+  officeOptions!: string[];
+  officeFilterOptions!: Observable<string[]>;
   dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = [
     'id',
@@ -144,7 +159,31 @@ export class UserListComponent {
     },
   ];
 
-  ngOnInit() {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: UnitOfService,
+  ) {
+    this.filterForm = this.formBuilder.group({
+      search: [''],
+      lab: [''],
+      userType: [''],
+      office: [''],
+    });
+  }
+
+  async ngOnInit() {
     this.dataSource.data = this.usersTest;
+    this.officeOptions = await this.service.officeService.FindOfficeList('');
+
+    this.officeFilterOptions = this.filterForm.get('office')!.valueChanges.pipe(
+      startWith(''), map(value => {
+        return this.officeFilter(value || '')
+      }),
+    );
+  }
+
+  private officeFilter(value: string): string[] {
+    const searchValue = value.toLowerCase();
+    return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
 }

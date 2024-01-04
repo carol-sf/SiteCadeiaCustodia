@@ -1,4 +1,46 @@
 <div class="mainContainer">
+  <h1 class="mainTitle">Cadeia de Custódia</h1>
+  <div class="menuContainer">
+    <h2 class="title">Usuários</h2>
+    <div class="filtersContainer">
+      <form [formGroup]="filterForm">
+        <mat-form-field class="filter marginBottom">
+          <mat-label class="label">Pesquisar</mat-label>
+          <input matInput formControlName="search">
+        </mat-form-field>
+
+        <mat-form-field class="filter select">
+          <mat-label class="label">Posto</mat-label>
+          <input matInput formControlName="office" [matAutocomplete]="officeAuto">
+          <mat-autocomplete #officeAuto>
+            <mat-option *ngFor="let option of officeFilterOptions | async" [value]="option">{{option}}</mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="filter select marginTop">
+          <mat-label>Laboratório</mat-label>
+          <mat-select formControlName="lab select">
+            <mat-option *ngFor="let option of labOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="filter select marginTop">
+          <mat-label>Cargo</mat-label>
+          <mat-select formControlName="userType">
+            <mat-option *ngFor="let option of userTypeOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+
+      <div class="addButton" routerLink="cadastrar">
+        <mat-icon>add</mat-icon>
+      </div>
+    </div>
+  </div>
   <div class="tableContainer">
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="id">
