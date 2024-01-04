@@ -52,3 +52,16 @@
   border-radius: 8px;
   margin-top: 40px;
 }
+
+.input {
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputGroup .input {
+  width: 48%;
+}

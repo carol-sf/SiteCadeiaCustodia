@@ -38,10 +38,15 @@ $SiteCadeiaCustodia-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-$primary-color: '#171D34';
-$secondary-color: '#1E2A4C';
+$primaryColor: '#171D34';
+$secondaryColor: '#1E2A4C';
 $lightAccentColor: '#5659EC';
 $contrastAccent: '#efb810';
-$light-gray: '#f1f1f1';
-$medium-gray: '#888888';
-$dark-gray: '#666666';
+$lightGrayColor: '#f1f1f1';
+$mediumGrayColor: '#888888';
+$darkGrayColor: '#666666';
+
+// .mat-mdc-text-field-wrapper {
+//   background-color: #f1f1f1;
+//   border-radius: 15px;
+// }

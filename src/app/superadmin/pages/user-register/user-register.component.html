@@ -1,54 +1,69 @@
 <section class="mainContainer">
   <h1>Cadastrar Usuário</h1>
   <form [formGroup]="form">
-    <div class="formGroup">
+    <div class="inputGroup">
       <mat-form-field class="input">
         <mat-label class="label">Id</mat-label>
-        <input matInput formControlName="id" type="text" required>
+        <input matInput formControlName="id" required>
         <mat-error *ngIf="form.controls['id'].hasError('required')">
           campo obrigatório
         </mat-error>
+        <mat-error *ngIf="form.controls['id'].hasError('minlength') || form.controls['id'].hasError('maxlength')">
+          O id deve conter 7 dígitos
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field class="input">
         <mat-label class="label">Matrícula</mat-label>
-        <input matInput formControlName="matriculation" type="text" required>
-        <mat-error *ngIf="form.controls['matriculation'].hasError('required')">
-          campo obrigatório
+        <input matInput formControlName="matriculation">
+        <mat-error *ngIf="form.controls['matriculation'].hasError('minlength')
+          || form.controls['matriculation'].hasError('maxlength')">
+          A matrícula deve conter 10 dígitos
         </mat-error>
       </mat-form-field>
     </div>
 
     <mat-form-field class="input">
       <mat-label class="label">Nome completo</mat-label>
-      <input matInput formControlName="name" type="text" required>
+      <input matInput formControlName="name" required>
       <mat-error *ngIf="form.controls['name'].hasError('required')">
         campo obrigatório
       </mat-error>
     </mat-form-field>
 
-    <div class="formGroup">
+    <div class="inputGroup">
       <mat-form-field class="input">
         <mat-label class="label">Posto</mat-label>
-        <input matInput formControlName="office" type="text" required>
+        <input matInput formControlName="office" [matAutocomplete]="officeAuto" required>
         <mat-error *ngIf="form.controls['office'].hasError('required')">
           campo obrigatório
         </mat-error>
+        <mat-autocomplete #officeAuto>
+          <mat-option *ngFor="let option of officeFilterOptions | async" [value]="option">{{option}}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
+
       <mat-form-field class="input">
         <mat-label class="label">Departamento</mat-label>
-        <input matInput formControlName="departament" type="text" required>
+        <input matInput formControlName="departament" [matAutocomplete]="departamentAuto" required>
         <mat-error *ngIf="form.controls['departament'].hasError('required')">
           campo obrigatório
         </mat-error>
+        <mat-autocomplete #departamentAuto>
+          <mat-option *ngFor="let option of departamentFilterOptions | async" [value]="option">{{option}}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </div>
 
     <mat-form-field class="input">
       <mat-label class="label">Serviço</mat-label>
-      <input matInput formControlName="service" type="text" required>
+      <input matInput formControlName="service" [matAutocomplete]="serviceAuto" required>
       <mat-error *ngIf="form.controls['service'].hasError('required')">
         campo obrigatório
       </mat-error>
+      <mat-autocomplete #serviceAuto>
+        <mat-option *ngFor="let option of serviceFilterOptions | async" [value]="option">{{option}}</mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <div class="userTypeContainer">
