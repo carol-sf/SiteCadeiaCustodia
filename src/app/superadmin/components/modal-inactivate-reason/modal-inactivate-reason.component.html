@@ -1,0 +1,24 @@
+<div class="modalContainer">
+  <h1 matDialogTitle class="title">Inativação</h1>
+  <mat-dialog-content class="content">
+    <p>Informe o motivo da inativação:</p>
+
+    <form [formGroup]="inactivateForm">
+      <mat-form-field class="input">
+        <mat-label>Motivo</mat-label>
+        <mat-select formControlName="reason">
+          <mat-option *ngFor="let option of reasonsOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    </form>
+
+    <mat-dialog-actions class="buttonsContainer">
+      <button mat-raised-button class="button cancelButton" (click)="cancel()">Cancelar</button>
+      <button mat-raised-button class="button confirmButton" (click)="confirm()">Salvar</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>

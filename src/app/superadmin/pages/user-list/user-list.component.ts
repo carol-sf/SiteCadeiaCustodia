@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { ModalInactivateReasonComponent } from '../../components/modal-inactivate-reason/modal-inactivate-reason.component';
 
 @Component({
   selector: 'app-user-list',
@@ -186,6 +188,16 @@ export class UserListComponent {
   private officeFilter(value: string): string[] {
     const searchValue = value.toLowerCase();
     return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
+  }
+
+  activeToggleChange(event: MatSlideToggleChange) {
+    if(event.checked) {
+      // chamar modal de motivo
+      this.dialog.open(ModalInactivateReasonComponent);
+      console.log('ativo!');
+    } else {
+      // exibir aviso dizendo que a ação não é permitida?
+    }
   }
 
 }

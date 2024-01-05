@@ -1,0 +1,41 @@
+@import '../../../../styles.scss';
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1E2A4C;
+}
+
+.input {
+  width: 100%;
+  height: 70px;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.confirmButton {
+  background-color: #5659EC;
+  color: white;
+  margin-left: 5px;
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: #5659EC;
+}
+
+.cancelButton:hover {
+  background-color: #eee;
+}

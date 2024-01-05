@@ -16,6 +16,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ModalInactivateReasonComponent } from './components/modal-inactivate-reason/modal-inactivate-reason.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ProceduresComponent,
     UserRegisterComponent,
     UserListComponent,
+    ModalInactivateReasonComponent,
   ],
   imports: [
     CommonModule,
