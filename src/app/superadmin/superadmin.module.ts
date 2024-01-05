@@ -17,6 +17,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalInactivateReasonComponent } from './components/modal-inactivate-reason/modal-inactivate-reason.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ModalInactivateReasonComponent } from './components/modal-inactivate-re
     MatSelectModule,
     MatTableModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class SuperadminModule { }
