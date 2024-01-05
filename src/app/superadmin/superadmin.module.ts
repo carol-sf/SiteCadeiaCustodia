@@ -15,7 +15,6 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
-import { ModalArquiveConfirmationComponent } from './components/modal-archive-confirmation/modal-archive-confirmation.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
@@ -24,7 +23,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     ProceduresComponent,
     UserRegisterComponent,
     UserListComponent,
-    ModalArquiveConfirmationComponent,
   ],
   imports: [
     CommonModule,

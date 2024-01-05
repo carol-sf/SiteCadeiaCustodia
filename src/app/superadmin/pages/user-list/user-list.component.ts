@@ -1,11 +1,10 @@
 import { User, UserType, getUserTypeName } from 'src/app/interfaces/user';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, filter, map, startWith } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable, map, startWith } from 'rxjs';
 import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalArquiveConfirmationComponent } from '../../components/modal-archive-confirmation/modal-archive-confirmation.component';
 
 @Component({
   selector: 'app-user-list',
@@ -33,8 +32,7 @@ export class UserListComponent {
     'lab',
     'role',
     'active',
-    'edit',
-    'archive'
+    'edit'
   ];
   getUserTypeName = getUserTypeName;
 
@@ -188,22 +186,6 @@ export class UserListComponent {
   private officeFilter(value: string): string[] {
     const searchValue = value.toLowerCase();
     return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
-  }
-
-  archiveUser(user: User) {
-    this.dialog
-      .open(ModalArquiveConfirmationComponent, {
-        width: '450px',
-        height: '200px',
-      })
-      .afterClosed()
-      .subscribe({
-        next: (result: boolean) => {
-          if (result) {
-            // arquivar usuário
-          }
-        },
-      });
   }
 
 }
