@@ -17,10 +17,9 @@ export class UserRegisterComponent {
   UserType = UserType;
   selectedUserType: UserType = UserType.Admin;
   officeOptions!: string[];
-  departamentOptions!: string[];
+  sectorOptions!: string[];
   serviceOptions!: string[];
   sectionOptions!: string[];
-  departamentFilterOptions!: Observable<string[]>;
   serviceFilterOptions!: Observable<string[]>;
   officeFilterOptions!: Observable<string[]>;
   sectionFilterOptions!: Observable<string[]>;
@@ -40,7 +39,7 @@ export class UserRegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       office: ['', Validators.required],
-      departament: ['', Validators.required],
+      sector: ['', Validators.required],
       services: ['', Validators.required],
       sections: ['']
     });
@@ -49,11 +48,11 @@ export class UserRegisterComponent {
   async ngOnInit() {
     if(this.cookie.get("type") != "2") {
       this.toast.error("Não autorizado")
-      this.router.navigate(["/login"]) 
+      this.router.navigate(["/login"])
     }
     else {
       this.officeOptions = await this.service.officeService.FindOfficeList('');
-      this.departamentOptions= ['Criminal', 'Médico Legal', 'IIFP'];
+      this.sectorOptions= ['Criminal', 'Médico Legal', 'IIFP'];
 
       this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
         startWith(''), map(value => {
@@ -61,7 +60,7 @@ export class UserRegisterComponent {
         }),
       );
 
-      this.form.get('departament')!.valueChanges.subscribe(value => {
+      this.form.get('sector')!.valueChanges.subscribe(value => {
         switch(value) {
           case 'Criminal':
             this.serviceOptions = ['Serviço de perícia de arma de fogo', 'Laboratório de entorpecentes'];
@@ -81,7 +80,7 @@ export class UserRegisterComponent {
         if(value.includes('Serviço de perícia de arma de fogo')) {
           this.sectionOptions = ['Confronto', 'Descrição'];
         }
-      });  
+      });
     }
   }
 
@@ -92,21 +91,6 @@ export class UserRegisterComponent {
   private officeFilter(value: string): string[] {
     const searchValue = value.toLowerCase();
     return this.officeOptions.filter(option => option.toLowerCase().includes(searchValue));
-  }
-
-  private departamentFilter(value: string): string[] {
-    const searchValue = value.toLowerCase();
-    return this.departamentOptions.filter(option => option.toLowerCase().includes(searchValue));
-  }
-
-  private serviceFilter(value: string): string[] {
-    const searchValue = value.toLowerCase();
-    return this.serviceOptions.filter(option => option.toLowerCase().includes(searchValue));
-  }
-
-  private sectionFilter(value: string): string[] {
-    const searchValue = value.toLowerCase();
-    return this.sectionOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
 
   async registerUser() {
@@ -121,7 +105,7 @@ export class UserRegisterComponent {
         posto: this.form.get('office')?.value,
         ativo: true,
         tipo: this.selectedUserType,
-        departamento: this.selectedUserType != UserType.Operador ? this.form.get('departament')?.value : '',
+        setor: this.selectedUserType != UserType.Operador ? this.form.get('sector')?.value : '',
         servicos: this.selectedUserType != UserType.Operador ? this.form.get('services')?.value : [],
         sections: this.form.get('sections')?.value
       }

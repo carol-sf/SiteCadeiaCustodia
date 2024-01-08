@@ -9,7 +9,7 @@ export interface User extends AddPrefixToKeys<string, any> {
     posto: string,
     ativo: boolean,
     tipo: UserType,
-    departamento: string,
+    setor: string,
     servicos: string[],
     sections: ''
 }

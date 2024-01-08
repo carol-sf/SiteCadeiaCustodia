@@ -71,16 +71,19 @@
       </mat-form-field>
 
       <mat-form-field class="input" *ngIf="selectedUserType != UserType.Operador">
-        <mat-label>Departamento</mat-label>
-        <mat-select formControlName="departament">
-          <mat-option *ngFor="let option of departamentOptions" [value]="option">
+        <mat-label>Setor</mat-label>
+        <mat-select formControlName="sector">
+          <mat-option *ngFor="let option of sectorOptions" [value]="option">
             {{ option }}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="form.controls['sector'].hasError('required')">
+          campo obrigatório
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <mat-form-field class="input" *ngIf="form.get('departament')?.value && selectedUserType != UserType.Operador">
+    <mat-form-field class="input" *ngIf="form.get('sector')?.value && selectedUserType != UserType.Operador">
       <mat-label>Serviços</mat-label>
       <mat-select formControlName="services" multiple>
         <mat-select-trigger>
