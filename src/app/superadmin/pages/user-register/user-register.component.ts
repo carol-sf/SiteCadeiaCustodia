@@ -52,7 +52,7 @@ export class UserRegisterComponent {
     }
     else {
       this.officeOptions = await this.service.officeService.FindOfficeList('');
-      this.sectorOptions= ['Criminal', 'Médico Legal', 'IIFP'];
+      this.sectorOptions= ['Criminal', 'Médico Legal', 'Identificação'];
 
       this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
         startWith(''), map(value => {
