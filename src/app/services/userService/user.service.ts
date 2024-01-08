@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import db from '../../config/firebase';
 import { collection, doc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { ReadUserDTO, User } from '../../interfaces/user';
+import { Cookie } from 'src/app/interfaces/cookie';
 
 @Injectable({
   providedIn: 'root'
@@ -60,29 +61,28 @@ export class UserService {
     }
   }
 
-  async Login(id : string, senha: string) {
-    try {
-      const user = await getDocs(query(collection(db, `Usuarios`), 
-        or(where('id', '==', id), where('matricula', '==', id))))
-
-      if(user.empty) return 'Nenhum usuario encontrado'
-
-      var type = 10
-
-      user.forEach(doc => {
-        if(doc.data()['senha'] == senha) {
-          type = doc.data()['tipo']
-        }
-      })
-
-      console.log(type)
-
-      if(type < 10) return type
-
-      return 'Senha incorreta'
+  async Login(id : string, senha: string) : Promise<Cookie> {
+    var data: Cookie = {
+      type: 0,
+      name: 'Senha Incorreta'
     }
-    catch(ex) {
-      return ex
+
+    const user = await getDocs(query(collection(db, `Usuarios`), 
+      or(where('id', '==', id), where('matricula', '==', id))))
+
+    if(user.empty) {
+      data.name = "Nenhum usuario encontrado"
+      return data
     }
+
+
+    user.forEach(doc => {
+      if(doc.data()['senha'] == senha) {
+        data.name = doc.data()['nome']
+        data.type = doc.data()['tipo']
+      }
+    })
+
+    return data
   }
 }

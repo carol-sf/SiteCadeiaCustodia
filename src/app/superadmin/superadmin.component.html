@@ -23,7 +23,7 @@
       <div>
         <div routerLink="perfil" class="profileButton" [class.collapsed]="!expanded">
           <img src="../../assets/icon-profile.png" alt="Icone de perfil" class="profileIcon">
-          <p class="userName" *ngIf="expanded">Denilson Soares de Siqueira</p>
+          <p class="userName" *ngIf="expanded">{{userName}}</p>
         </div>
         <div class="toggleMenuContainer" [class.collapsed]="!expanded" >
           <mat-icon (click)="toggleMenu()" class="toggleMenuButton" *ngIf="expanded">navigate_before</mat-icon>

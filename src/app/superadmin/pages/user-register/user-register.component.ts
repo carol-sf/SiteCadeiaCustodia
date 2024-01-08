@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, map, startWith } from 'rxjs';
 import { User, UserType } from 'src/app/interfaces/user';
@@ -27,7 +28,8 @@ export class UserRegisterComponent {
     private formBuilder: FormBuilder,
     private service: UnitOfService,
     private toast: ToastrService,
-    private router: Router
+    private router: Router,
+    private cookie: CookieService
   ) {
     this.form = this.formBuilder.group({
       id: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
@@ -42,31 +44,36 @@ export class UserRegisterComponent {
   }
 
   async ngOnInit() {
-    this.officeOptions = await this.service.officeService.FindOfficeList('');
-    this.departamentOptions= ['Criminal', 'Médico Legal', 'IIFP'];
+    if(this.cookie.get("type") != "2") {
+      this.toast.error("Não autorizado")
+      this.router.navigate(["/login"]) 
+    }
+    else {
+      this.officeOptions = await this.service.officeService.FindOfficeList('');
+      this.departamentOptions= ['Criminal', 'Médico Legal', 'IIFP'];
 
-    this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
-      startWith(''), map(value => {
-        return this.officeFilter(value || '')
-      }),
-    );
+      this.officeFilterOptions = this.form.get('office')!.valueChanges.pipe(
+        startWith(''), map(value => {
+          return this.officeFilter(value || '')
+        }),
+      );
 
-    this.form.get('departament')!.valueChanges.subscribe(value => {
-      switch(value) {
-        case 'Criminal':
-          this.serviceOptions = ['Serviço de perícia de arma de fogo', 'Laboratório de entorpecentes'];
-          break;
-        case 'Médico Legal':
-          this.serviceOptions = ['Laboratório de hematologia', 'Laboratório de toxicologia', 'Laboratório de anatomo-patologia'];
-          break;
-        case 'IIFP':
-          this.serviceOptions = ['Movimentação de material'];
-          break;
-        default:
-          this.serviceOptions = [''];
-      }
-    });
-
+      this.form.get('departament')!.valueChanges.subscribe(value => {
+        switch(value) {
+          case 'Criminal':
+            this.serviceOptions = ['Serviço de perícia de arma de fogo', 'Laboratório de entorpecentes'];
+            break;
+          case 'Médico Legal':
+            this.serviceOptions = ['Laboratório de hematologia', 'Laboratório de toxicologia', 'Laboratório de anatomo-patologia'];
+            break;
+          case 'IIFP':
+            this.serviceOptions = ['Movimentação de material'];
+            break;
+          default:
+            this.serviceOptions = [''];
+        }
+      });
+    }
   }
 
   selectUserType(userType: UserType) {

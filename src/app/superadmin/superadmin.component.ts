@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-superadmin',
@@ -11,7 +12,14 @@ export class SuperadminComponent {
 
   constructor(
     private router: Router,
+    private cookie: CookieService
   ) {}
+
+  userName = ''
+
+  ngOnInit() {
+    this.userName = this.cookie.get('name')
+  }
 
   goToProfilePage() {
     this.router.navigate(['superadmin/perfil']);

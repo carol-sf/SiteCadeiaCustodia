@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ModalInactivateReasonComponent } from '../../components/modal-inactivate-reason/modal-inactivate-reason.component';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -45,7 +47,9 @@ export class UserListComponent {
     private formBuilder: FormBuilder,
     private service: UnitOfService,
     private dialog: MatDialog,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private cookie: CookieService,
+    private router: Router
   ) {
     this.filterForm = this.formBuilder.group({
       search: [''],
@@ -56,14 +60,21 @@ export class UserListComponent {
   }
 
   async ngOnInit() {
-    this.FindUsers()
-    this.officeOptions = await this.service.officeService.FindOfficeList('');
+    if(this.cookie.get("type") != "2") {
+      this.toast.error("Não autorizado")
+      this.router.navigate(["/login"]) 
+    }
+    else {
+      this.FindUsers()
 
-    this.officeFilterOptions = this.filterForm.get('office')!.valueChanges.pipe(
-      startWith(''), map(value => {
-        return this.officeFilter(value || '')
-      }),
-    );
+      this.officeOptions = await this.service.officeService.FindOfficeList('');
+
+      this.officeFilterOptions = this.filterForm.get('office')!.valueChanges.pipe(
+        startWith(''), map(value => {
+          return this.officeFilter(value || '')
+        }),
+      );
+    }    
   }
 
   private officeFilter(value: string): string[] {
@@ -74,7 +85,7 @@ export class UserListComponent {
   async FindUsers() {
     var result = await this.service.userService.FindUsers()
 
-    if(result) this.toast.error("Nenhum usuario encontrado")
+    if(result.length === 0) this.toast.error("Nenhum usuario encontrado")
 
     this.dataSource.data = result
   }
