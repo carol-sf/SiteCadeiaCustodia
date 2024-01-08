@@ -10,7 +10,8 @@ export interface User extends AddPrefixToKeys<string, any> {
     ativo: boolean,
     tipo: UserType,
     departamento: string,
-    servicos: string[]
+    servicos: string[],
+    sections: ''
 }
 
 export interface ReadUserDTO {

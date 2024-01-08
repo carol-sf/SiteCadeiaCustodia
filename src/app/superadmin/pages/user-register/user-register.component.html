@@ -95,6 +95,15 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="input" *ngIf="form.get('office')?.value.includes('ICCE') && form.get('services')?.value">
+      <mat-label>Seção</mat-label>
+      <mat-select formControlName="sections" multiple>
+        <mat-option *ngFor="let section of sectionOptions" [value]="section">
+          {{ section }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <div class="userTypeContainer">
       <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Admin"
         (click)="selectUserType(UserType.Admin)">

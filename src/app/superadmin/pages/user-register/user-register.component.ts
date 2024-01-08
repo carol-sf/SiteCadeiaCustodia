@@ -19,9 +19,11 @@ export class UserRegisterComponent {
   officeOptions!: string[];
   departamentOptions!: string[];
   serviceOptions!: string[];
+  sectionOptions!: string[];
   departamentFilterOptions!: Observable<string[]>;
   serviceFilterOptions!: Observable<string[]>;
   officeFilterOptions!: Observable<string[]>;
+  sectionFilterOptions!: Observable<string[]>;
   hidePassword: boolean = true;
 
   constructor(
@@ -40,6 +42,7 @@ export class UserRegisterComponent {
       office: ['', Validators.required],
       departament: ['', Validators.required],
       services: ['', Validators.required],
+      sections: ['']
     });
   }
 
@@ -73,6 +76,12 @@ export class UserRegisterComponent {
             this.serviceOptions = [''];
         }
       });
+
+      this.form.get('services')!.valueChanges.subscribe(value => {
+        if(value.includes('Serviço de perícia de arma de fogo')) {
+          this.sectionOptions = ['Confronto', 'Descrição'];
+        }
+      });  
     }
   }
 
@@ -95,6 +104,11 @@ export class UserRegisterComponent {
     return this.serviceOptions.filter(option => option.toLowerCase().includes(searchValue));
   }
 
+  private sectionFilter(value: string): string[] {
+    const searchValue = value.toLowerCase();
+    return this.sectionOptions.filter(option => option.toLowerCase().includes(searchValue));
+  }
+
   async registerUser() {
     this.form.markAsTouched()
     if(this.form.valid) {
@@ -108,7 +122,8 @@ export class UserRegisterComponent {
         ativo: true,
         tipo: this.selectedUserType,
         departamento: this.selectedUserType != UserType.Operador ? this.form.get('departament')?.value : '',
-        servicos: this.selectedUserType != UserType.Operador ? this.form.get('services')?.value : []
+        servicos: this.selectedUserType != UserType.Operador ? this.form.get('services')?.value : [],
+        sections: this.form.get('sections')?.value
       }
 
       var result: any = await this.service.userService.CreateUser(user)

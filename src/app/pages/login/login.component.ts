@@ -38,9 +38,10 @@ export class LoginComponent {
       var user = this.form.get('user')
       var password = this.form.get('password')
 
-      console.log(password?.value)
-
       var result : Cookie = await this.service.userService.Login(user?.value, password?.value)
+
+      user?.setValue('')
+      password?.setValue('')
 
       switch(result.type) {
         case 2:
