@@ -24,6 +24,7 @@ export class UserRegisterComponent {
   officeFilterOptions!: Observable<string[]>;
   sectionFilterOptions!: Observable<string[]>;
   hidePassword: boolean = true;
+  isICCE: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,9 +63,10 @@ export class UserRegisterComponent {
 
       this.form.get('office')!.valueChanges.subscribe(value =>{
         if(value == 'Instituto de Criminalística Carlos Éboli (ICCE)') {
-          this.sectorOptions= ['Criminal'];
+          this.isICCE = true;
+          this.form.get('sector')?.setValue('Criminal');
         } else {
-          this.sectorOptions= ['Criminal', 'Médico Legal', 'Identificação'];
+          this.isICCE = false;
         }
       });
 

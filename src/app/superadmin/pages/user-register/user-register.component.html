@@ -72,7 +72,7 @@
 
       <mat-form-field class="input" *ngIf="selectedUserType != UserType.Administrativo">
         <mat-label>Setor</mat-label>
-        <mat-select formControlName="sector">
+        <mat-select formControlName="sector" [disabled]="isICCE">
           <mat-option *ngFor="let option of sectorOptions" [value]="option">
             {{ option }}
           </mat-option>
