@@ -105,8 +105,8 @@ export class UserRegisterComponent {
         posto: this.form.get('office')?.value,
         ativo: true,
         tipo: this.selectedUserType,
-        setor: this.selectedUserType != UserType.Operador ? this.form.get('sector')?.value : '',
-        servicos: this.selectedUserType != UserType.Operador ? this.form.get('services')?.value : [],
+        setor: this.selectedUserType != UserType.Administrativo ? this.form.get('sector')?.value : '',
+        servicos: this.selectedUserType != UserType.Administrativo ? this.form.get('services')?.value : [],
         sections: this.form.get('sections')?.value
       }
 

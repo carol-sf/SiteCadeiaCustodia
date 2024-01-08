@@ -27,7 +27,7 @@ export enum UserType {
     Perito = 0,
     Admin = 1,
     SuperAdmin = 2,
-    Operador = 3
+    Administrativo = 3
 }
 
 export function getUserTypeName(userType: UserType): string {
@@ -35,6 +35,6 @@ export function getUserTypeName(userType: UserType): string {
     case UserType.Perito: return "Perito";
     case UserType.Admin: return "Admin";
     case UserType.SuperAdmin: return "Super Admin";
-    case UserType.Operador: return "Operador";
+    case UserType.Administrativo: return "Administrativo";
   }
 }

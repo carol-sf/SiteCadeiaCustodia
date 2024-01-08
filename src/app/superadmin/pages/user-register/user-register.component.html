@@ -59,7 +59,7 @@
     </div>
 
     <div class="inputGroup">
-      <mat-form-field class="input"  [class.expandedInput]="selectedUserType == UserType.Operador">
+      <mat-form-field class="input"  [class.expandedInput]="selectedUserType == UserType.Administrativo">
         <mat-label class="label">Posto</mat-label>
         <input matInput formControlName="office" [matAutocomplete]="officeAuto" required>
         <mat-error *ngIf="form.controls['office'].hasError('required')">
@@ -70,7 +70,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="input" *ngIf="selectedUserType != UserType.Operador">
+      <mat-form-field class="input" *ngIf="selectedUserType != UserType.Administrativo">
         <mat-label>Setor</mat-label>
         <mat-select formControlName="sector">
           <mat-option *ngFor="let option of sectorOptions" [value]="option">
@@ -83,7 +83,7 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field class="input" *ngIf="form.get('sector')?.value && selectedUserType != UserType.Operador">
+    <mat-form-field class="input" *ngIf="form.get('sector')?.value && selectedUserType != UserType.Administrativo">
       <mat-label>Serviços</mat-label>
       <mat-select formControlName="services" multiple>
         <mat-select-trigger>
@@ -126,13 +126,13 @@
         <p>Perito</p>
       </div>
 
-      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Operador"
-        (click)="selectUserType(UserType.Operador)">
-        <img src="../../../../assets/user-operator-blue.png" alt="Icone de operador"
-          *ngIf="selectedUserType != UserType.Operador">
-        <img src="../../../../assets/user-operator-white.png" alt="Icone de operador"
-          *ngIf="selectedUserType == UserType.Operador">
-        <p>Operador</p>
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Administrativo"
+        (click)="selectUserType(UserType.Administrativo)">
+        <img src="../../../../assets/user-operator-blue.png" alt="Icone de Administrativo"
+          *ngIf="selectedUserType != UserType.Administrativo">
+        <img src="../../../../assets/user-operator-white.png" alt="Icone de Administrativo"
+          *ngIf="selectedUserType == UserType.Administrativo">
+        <p>Administrativo</p>
       </div>
     </div>
 
