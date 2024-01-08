@@ -12,7 +12,7 @@ export class UserService {
 
   async CreateUser(user: User) {
     try {
-      const docRef = collection(db, `Postos/${user.posto}`, "Usuarios")
+      const docRef = collection(db, 'Usuarios')
 
       await setDoc(doc(docRef, user.id), user)
 
@@ -25,7 +25,7 @@ export class UserService {
 
   async UpdateUser(user: User) {
     try {
-      const docRef = doc(db, `Postos/${user.posto}/Usuarios`, user.id)
+      const docRef = doc(db, `Usuarios`, user.id)
 
       await updateDoc(docRef, user)
       return "Sucesso"
@@ -37,7 +37,7 @@ export class UserService {
 
   async FindUsers(posto: string) {
     try {
-      const query = await getDocs(collection(db, `Postos/${posto}/Usuarios`))
+      const query = await getDocs(collection(db, `Usuarios`))
 
       let ret : any[] = []
 
@@ -54,14 +54,14 @@ export class UserService {
     }
   }
 
-  async Login(posto: string, id : string, senha: string) {
+  async Login(id : string, senha: string) {
     try {
-      const user = await getDocs(query(collection(db, `Postos/${posto}/Usuarios`), 
+      const user = await getDocs(query(collection(db, `Usuarios`), 
         or(where('id', '==', id), where('matricula', '==', id))))
 
       if(user.empty) return 'Nenhum usuario encontrado'
 
-      var type
+      var type = 10
 
       user.forEach(doc => {
         if(doc.data()['senha'] == senha) {
@@ -69,7 +69,9 @@ export class UserService {
         }
       })
 
-      if(type) return type
+      console.log(type)
+
+      if(type < 10) return type
 
       return 'Senha incorreta'
     }

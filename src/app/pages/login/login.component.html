@@ -24,17 +24,6 @@
               campo obrigatório
             </mat-error>
           </mat-form-field>
-
-          <mat-form-field class="input">
-            <mat-label class="label">Posto</mat-label>
-            <input matInput formControlName="office" [matAutocomplete]="auto" [formControl]="officeControl" required (ngModelChange)="changeOffice()">
-            <mat-error *ngIf="officeControl.hasError('required')">
-              campo obrigatório
-            </mat-error>
-            <mat-autocomplete #auto>
-              <mat-option *ngFor="let office of filterOptions | async" [value]="office">{{office}}</mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
         </form>
         <div class="actionsContainer">
           <a routerLink="" class="link">Esqueceu a senha?</a>
