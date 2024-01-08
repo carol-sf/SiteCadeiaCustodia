@@ -64,7 +64,7 @@ export class UserService {
   async Login(id : string, senha: string) : Promise<Cookie> {
     var data: Cookie = {
       type: 0,
-      name: 'Senha Incorreta'
+      name: 'Senha incorreta'
     }
 
     const user = await getDocs(query(collection(db, `Usuarios`), 
@@ -74,7 +74,6 @@ export class UserService {
       data.name = "Nenhum usuario encontrado"
       return data
     }
-
 
     user.forEach(doc => {
       if(doc.data()['senha'] == senha) {

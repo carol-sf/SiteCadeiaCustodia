@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, HostListener } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map, startWith } from 'rxjs';
 import { Cookie } from 'src/app/interfaces/cookie';
 import { UnitOfService } from 'src/app/services/unitOfService/unit-of-service.service';
 
@@ -33,6 +32,7 @@ export class LoginComponent {
     if(this.cookie.get("name")) this.cookie.delete("name")
   }
 
+  @HostListener('document:keydown.enter', ['$event'])
   async login() {
     if(this.form.valid) {
       var user = this.form.get('user')
