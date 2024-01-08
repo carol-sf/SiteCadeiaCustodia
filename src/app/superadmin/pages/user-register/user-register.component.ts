@@ -60,6 +60,14 @@ export class UserRegisterComponent {
         }),
       );
 
+      this.form.get('office')!.valueChanges.subscribe(value =>{
+        if(value == 'Instituto de Criminalística Carlos Éboli (ICCE)') {
+          this.sectorOptions= ['Criminal'];
+        } else {
+          this.sectorOptions= ['Criminal', 'Médico Legal', 'Identificação'];
+        }
+      });
+
       this.form.get('sector')!.valueChanges.subscribe(value => {
         switch(value) {
           case 'Criminal':
