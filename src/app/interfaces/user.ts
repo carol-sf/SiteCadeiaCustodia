@@ -13,6 +13,15 @@ export interface User extends AddPrefixToKeys<string, any> {
     servicos: string[]
 }
 
+export interface ReadUserDTO {
+  id: string,
+  nome: string,
+  posto: string,
+  servicos: string,
+  tipo: UserType,
+  ativo: boolean
+}
+
 export enum UserType {
     Perito = 0,
     Admin = 1,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import db from '../../config/firebase';
 import { collection, doc, getDocs, or, query, setDoc, updateDoc, where } from 'firebase/firestore';
-import { User } from '../../interfaces/user';
+import { ReadUserDTO, User } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -35,22 +35,28 @@ export class UserService {
     }
   }
 
-  async FindUsers(posto: string) {
+  async FindUsers() {
     try {
-      const query = await getDocs(collection(db, `Usuarios`))
+      const q = await getDocs(query(collection(db, `Usuarios`),
+      where('tipo', '!=', 2)))
 
-      let ret : any[] = []
+      let ret : ReadUserDTO[] = []
 
-      query.forEach(doc => {
+      q.forEach(doc => {
         ret.push({
-          ...doc.data()
+          id: doc.data()["id"],
+          nome: doc.data()["nome"],
+          posto: doc.data()["posto"],
+          servicos: doc.data()["servicos"],
+          tipo: doc.data()["tipo"],
+          ativo: doc.data()["ativo"]
         })
       })
 
       return ret
     }
     catch(ex) {
-      return ex
+      return []
     }
   }
 
