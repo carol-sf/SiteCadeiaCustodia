@@ -18,7 +18,7 @@
 .headerMenu {
   text-align: center;
   padding: 20px 30px;
-  height: 30%;
+  height: 35%;
 }
 
 .headerMenu.collapsed {
@@ -37,6 +37,8 @@
 .titleMenu {
   font-size: 16px;
   color: white;
+  margin-bottom: 0;
+  margin-top: 5px;
 }
 
 .titleMenu.collapsed {
@@ -48,7 +50,7 @@
   padding: 20px 2px;
   background-color: #1E2A4C;
   border-top-right-radius: 50px;
-  height: 70%;
+  height: 65%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

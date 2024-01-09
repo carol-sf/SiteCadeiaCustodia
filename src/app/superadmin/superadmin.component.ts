@@ -9,13 +9,14 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class SuperadminComponent {
   expanded: boolean = true;
+  userName: string = '';
+  officeName: string = 'Itaperuna';
 
   constructor(
     private router: Router,
     private cookie: CookieService
   ) {}
 
-  userName = ''
 
   ngOnInit() {
     this.userName = this.cookie.get('name')
