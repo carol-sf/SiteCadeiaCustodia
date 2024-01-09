@@ -47,17 +47,32 @@
   margin-top: 5px;
 }
 
-.sentButtonContainer {
+.buttonContainer {
   display: flex;
   justify-content: flex-end;
 }
 
-.sendButon {
-  background-color: #1E2A4C;
+.button {
   color: white;
   padding: 6px 12px;
   border-radius: 8px;
   margin-top: 40px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button span {
+  margin-right: 5px;
+}
+
+.confirmButton {
+  background-color: #1E2A4C;
+}
+
+.cancelButton {
+  background-color: #ff0000b3;
 }
 
 .input {
