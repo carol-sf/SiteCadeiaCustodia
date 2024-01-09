@@ -1,0 +1,145 @@
+<section class="mainContainer">
+  <h1 class="title">Cadastrar Usuário</h1>
+  <form [formGroup]="form">
+    <div class="inputGroup">
+      <mat-form-field class="input">
+        <mat-label class="label">Id</mat-label>
+        <input matInput formControlName="id" required>
+        <mat-error *ngIf="form.controls['id'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+        <mat-error *ngIf="form.controls['id'].hasError('minlength') || form.controls['id'].hasError('maxlength')">
+          O id deve conter 7 dígitos
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label class="label">Matrícula</mat-label>
+        <input matInput formControlName="matriculation">
+        <mat-error *ngIf="form.controls['matriculation'].hasError('minlength')
+          || form.controls['matriculation'].hasError('maxlength')">
+          A matrícula deve conter 10 dígitos
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="input">
+      <mat-label class="label">Nome completo</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="form.controls['name'].hasError('required')">
+        campo obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <div class="inputGroup">
+      <mat-form-field class="input">
+        <mat-label class="label">Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="form.controls['email'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+        <mat-error *ngIf="form.controls['email'].hasError('email')">
+          Email inválido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label class="label">Senha</mat-label>
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword" class="iconPassword">
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+        <mat-error *ngIf="form.controls['password'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+        <mat-error *ngIf="form.controls['password'].hasError('minlength')">
+          A senha deve conter pelo menos 6 caracteres
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="inputGroup">
+      <mat-form-field class="input"  [class.expandedInput]="selectedUserType == UserType.Administrativo">
+        <mat-label class="label">Posto</mat-label>
+        <input matInput formControlName="office" [matAutocomplete]="officeAuto" required>
+        <mat-error *ngIf="form.controls['office'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+        <mat-autocomplete #officeAuto>
+          <mat-option *ngFor="let option of officeFilterOptions | async" [value]="option">{{option}}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="input" *ngIf="selectedUserType != UserType.Administrativo">
+        <mat-label>Setor</mat-label>
+        <mat-select formControlName="sector" [disabled]="isICCE">
+          <mat-option *ngFor="let option of sectorOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['sector'].hasError('required')">
+          campo obrigatório
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="input" *ngIf="form.get('sector')?.value && selectedUserType != UserType.Administrativo">
+      <mat-label>Serviços</mat-label>
+      <mat-select formControlName="services" multiple>
+        <mat-select-trigger>
+          {{form.get('services')?.value?.[0] || ''}}
+          <span class="labelOthers" *ngIf="(form.get('services')?.value?.length || 0) > 1">
+            (+{{(form.get('services')?.value?.length || 0) - 1}} {{form.get('services')?.value?.length === 2 ? 'outro' : 'outros'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let service of serviceOptions" [value]="service">
+          {{ service }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input" *ngIf="form.get('office')?.value.includes('ICCE') && form.get('services')?.value">
+      <mat-label>Seção</mat-label>
+      <mat-select formControlName="sections" multiple>
+        <mat-option *ngFor="let section of sectionOptions" [value]="section">
+          {{ section }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="userTypeContainer">
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Admin"
+        (click)="selectUserType(UserType.Admin)">
+        <img src="../../../../assets/user-manager-blue.png" alt="Icone de gerente"
+          *ngIf="selectedUserType != UserType.Admin">
+        <img src="../../../../assets/user-manager-white.png" alt="Icone de gerente"
+          *ngIf="selectedUserType == UserType.Admin">
+        <p>Gerente</p>
+      </div>
+
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Perito"
+        (click)="selectUserType(UserType.Perito)">
+        <img src="../../../../assets/user-investigator-blue.png" alt="Icone de perito"
+          *ngIf="selectedUserType != UserType.Perito">
+        <img src="../../../../assets/user-investigator-white.png" alt="Icone de perito"
+          *ngIf="selectedUserType == UserType.Perito">
+        <p>Perito</p>
+      </div>
+
+      <div class="userTypeItem" [class.selected]="selectedUserType == UserType.Administrativo"
+        (click)="selectUserType(UserType.Administrativo)">
+        <img src="../../../../assets/user-operator-blue.png" alt="Icone de Administrativo"
+          *ngIf="selectedUserType != UserType.Administrativo">
+        <img src="../../../../assets/user-operator-white.png" alt="Icone de Administrativo"
+          *ngIf="selectedUserType == UserType.Administrativo">
+        <p>Administrativo</p>
+      </div>
+    </div>
+
+    <div class="sentButtonContainer">
+      <div class="sendButon" (click)="registerUser()">
+        <mat-icon color="#fff">add</mat-icon>
+      </div>
+    </div>
+  </form>
+</section>

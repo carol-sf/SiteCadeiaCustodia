@@ -1,0 +1,40 @@
+<div class="modalContainer">
+  <h1 matDialogTitle class="title">Inativação</h1>
+  <mat-dialog-content class="content">
+
+    <form [formGroup]="inactivateForm">
+      <p>Informe o motivo da inativação:</p>
+      <mat-form-field class="input">
+        <mat-label>Motivo</mat-label>
+        <mat-select formControlName="reason">
+          <mat-option *ngFor="let option of reasonsOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="inactivateForm.controls['reason'].hasError('required')">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <p *ngIf="inactivateForm.controls['reason'].value != 'Afastamento' && inactivateForm.controls['reason'].value != ''">Escolha o período de inativação:</p>
+      <mat-form-field class="input" *ngIf="inactivateForm.controls['reason'].value != 'Afastamento' && inactivateForm.controls['reason'].value != ''">
+        <mat-label>Período</mat-label>
+        <mat-date-range-input [formGroup]="periodForm" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="data inicial">
+          <input matEndDate formControlName="end" placeholder="data final">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-error *ngIf="periodForm.controls['start'].hasError('required') || periodForm.controls['end'].hasError('required')">
+          Informe um período válido
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+
+    <mat-dialog-actions class="buttonsContainer">
+      <button mat-raised-button class="button cancelButton" (click)="cancel()">Cancelar</button>
+      <button mat-raised-button class="button confirmButton" (click)="confirm()">Salvar</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>

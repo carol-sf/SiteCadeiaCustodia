@@ -1,0 +1,38 @@
+<div class="backgroundImage">
+  <section class="mainContainer">
+    <div class="mainContent">
+      <div class="titleContainer">
+        <img src="../../../assets/police-logo.png" alt="Logo da polícia" class="image">
+        <h1 class="title">Cadeia de Custódia</h1>
+      </div>
+      <div class="formContainer">
+        <h2 class="subtitle">Login</h2>
+        <form [formGroup]="form" class="loginForm">
+
+          <mat-form-field class="input">
+            <mat-label class="label">Id ou matrícula</mat-label>
+            <input matInput formControlName="user" type="text" required>
+            <mat-error *ngIf="form.controls['user'].hasError('required')">
+              campo obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input">
+            <mat-label class="label">Senha</mat-label>
+            <input matInput type="password" formControlName="password" required>
+            <mat-error *ngIf="form.controls['password'].hasError('required')">
+              campo obrigatório
+            </mat-error>
+          </mat-form-field>
+        </form>
+        <div class="actionsContainer">
+          <a routerLink="" class="link">Esqueceu a senha?</a>
+          <button mat-button class="button" (click)="login()">
+            Entrar
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,85 @@
+@import '../../../../styles.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  margin: 10px 20px;
+}
+
+.mainTitle {
+  font-size: 28px;
+  color: #1E2A4C;
+}
+
+.menuContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: #1E2A4C;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.filtersContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter {
+  margin: 0 4px;
+  height: 70px;
+}
+
+.filter.select {
+  width: 150px;
+}
+
+// .filter.select.marginTop {
+//   margin-top: 20px;
+// }
+
+// .filter.marginBottom {
+//   margin-bottom: 5px;
+// }
+
+.addButton {
+  background-color: #1E2A4C;
+  color: white;
+  border-radius: 8px;
+  width: 55px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+
+
+
+.tableContainer {
+  width: 100%;
+  height: 500px !important;
+  overflow: scroll;
+  border: 5px solid transparent;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.tableButton {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.tableButton:hover {
+  background-color: #f1f1f1;
+}
