@@ -32,25 +32,23 @@ export class ModalInactivateReasonComponent {
 
   cancel() {
     this.dialogRef.close();
+    window.location.reload();
   }
 
   confirm() {
     if(this.inactivateForm.valid ) {
-      console.log()
       if(this.inactivateForm.get('reason')?.value != 'Afastamento') {
         if(this.periodForm.valid) {
           // registrar com a data
           console.log(this.inactivateForm.get('reason')?.value);
           console.log(this.periodForm.value);
-          this.dialogRef.close();
         }
       } else {
-        // registrar com a data vazia
-        this.dialogRef.close();
+        // registrar sem a data
       }
+      // editar o campo 'ativo' do usuário para 'inativo'
+      this.dialogRef.close();
+      window.location.reload();
     }
-  }
-
-  registerInactivateData() {
   }
 }

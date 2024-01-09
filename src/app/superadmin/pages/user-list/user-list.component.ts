@@ -62,7 +62,7 @@ export class UserListComponent {
   async ngOnInit() {
     if(this.cookie.get("type") != "2") {
       this.toast.error("Não autorizado")
-      this.router.navigate(["/login"]) 
+      this.router.navigate(["/login"])
     }
     else {
       this.FindUsers()
@@ -74,7 +74,7 @@ export class UserListComponent {
           return this.officeFilter(value || '')
         }),
       );
-    }    
+    }
   }
 
   private officeFilter(value: string): string[] {
@@ -94,9 +94,8 @@ export class UserListComponent {
     if(!event.checked) {
       // chamar modal de motivo
       this.dialog.open(ModalInactivateReasonComponent);
-      console.log('ativo!');
     } else {
-      // exibir aviso dizendo que a ação não é permitida?
+      // exibir um modal de confirmação
     }
   }
 
