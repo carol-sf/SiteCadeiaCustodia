@@ -15,22 +15,36 @@
           Campo obrigatório
         </mat-error>
       </mat-form-field>
-
-      <p *ngIf="inactivateForm.controls['reason'].value != 'Afastamento' && inactivateForm.controls['reason'].value != ''">Escolha o período de inativação:</p>
-      <mat-form-field class="input" *ngIf="inactivateForm.controls['reason'].value != 'Afastamento' && inactivateForm.controls['reason'].value != ''">
-        <mat-label>Período</mat-label>
-        <mat-date-range-input [formGroup]="periodForm" [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="data inicial">
-          <input matEndDate formControlName="end" placeholder="data final">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-        <mat-error *ngIf="periodForm.controls['start'].hasError('required') || periodForm.controls['end'].hasError('required')">
-          Informe um período válido
-        </mat-error>
-      </mat-form-field>
-
     </form>
+
+    <p *ngIf="inactivateForm.controls['reason'].value == 'Férias'
+      || inactivateForm.controls['reason'].value == 'Licença Médica'">
+      Escolha o período de inativação:
+    </p>
+    <mat-form-field class="input" *ngIf="inactivateForm.controls['reason'].value == 'Férias'
+      || inactivateForm.controls['reason'].value == 'Licença Médica'">
+      <mat-label>Período</mat-label>
+      <mat-date-range-input [formGroup]="periodForm" [rangePicker]="periodPicker">
+        <input matStartDate formControlName="start" placeholder="data inicial">
+        <input matEndDate formControlName="end" placeholder="data final">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="periodPicker"></mat-datepicker-toggle>
+      <mat-date-range-picker #periodPicker></mat-date-range-picker>
+      <mat-error *ngIf="periodForm.controls['start'].hasError('required') || periodForm.controls['end'].hasError('required')">
+        Informe um período válido
+      </mat-error>
+    </mat-form-field>
+
+    <form [formGroup]="periodForm" *ngIf="this.inactivateForm.get('reason')?.value == 'Aposentadoria'">
+      <mat-form-field class="input">
+        <mat-label>Data de início</mat-label>
+        <input matInput [matDatepicker]="startPicker" formControlName="start">
+        <mat-datepicker #startPicker></mat-datepicker>
+        <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+      </mat-form-field>
+    </form>
+
+
 
     <mat-dialog-actions class="buttonsContainer">
       <button mat-raised-button class="button cancelButton" (click)="cancel()">Cancelar</button>

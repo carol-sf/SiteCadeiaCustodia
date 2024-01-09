@@ -48,7 +48,7 @@ export class ModalInactivateReasonComponent {
       }
       // editar o campo 'ativo' do usuário para 'inativo'
       this.dialogRef.close();
-      window.location.reload();
+      // window.location.reload();
     }
   }
 }
